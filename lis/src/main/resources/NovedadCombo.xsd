@@ -1,0 +1,44 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://austral.com/model/soap"
+	xmlns:tns="http://austral.com/model/soap">
+
+
+
+
+<xs:element name="CPTCompuesto">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="xs:string" name="CodigoPadre" />
+			<xs:element name="Estudios">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Estudio" maxOccurs="unbounded"
+							minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element type="xs:string" name="CodigoCPT" />
+									<xs:element type="xs:string" name="Cantidad" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+
+<xs:element name="InformarNovedadComboResponse">
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element name="CodigoRespuesta" type="xs:string" />
+			<xs:element name="EstadoRespuesta" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:element>
+
+
+
+</xs:schema>

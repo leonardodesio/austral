@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://austral.com/model/soap" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://austral.com/model/soap" targetNamespace="http://austral.com/model/soap">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://austral.com/model/soap">
+
+	<xs:element name="ObtenerRegistrosRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="operacion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="ObtenerRegistrosResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ObtenerRegistros">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="MethodParameters">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="TIN_Interfaz_Respuesta">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="EstadoRespuesta">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="CodigoRespuesta" type="xs:string"/>
+																<xs:element name="Mensaje" type="xs:string"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="TIN_Interfaces">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element maxOccurs="unbounded" name="TIN_Interfaz">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="DatosXML" type="xs:string"/>
+																			<xs:element name="Entidad" type="xs:string"/>
+																			<xs:element name="Estado" type="xs:string"/>
+																			<xs:element name="FechaNovedad" type="xs:string"/>
+																			<xs:element name="IdProceso" type="xs:string"/>
+																			<xs:element name="InterfazID" type="xs:string"/>
+																			<xs:element name="Observacion" type="xs:string"/>
+																			<xs:element name="TipoNovedad" type="xs:string"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ObtenerRegistrosRequest">
+    <wsdl:part element="tns:ObtenerRegistrosRequest" name="ObtenerRegistrosRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ObtenerRegistrosResponse">
+    <wsdl:part element="tns:ObtenerRegistrosResponse" name="ObtenerRegistrosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="RegistrosPort">
+    <wsdl:operation name="ObtenerRegistros">
+      <wsdl:input message="tns:ObtenerRegistrosRequest" name="ObtenerRegistrosRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:ObtenerRegistrosResponse" name="ObtenerRegistrosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RegistrosPortSoap11" type="tns:RegistrosPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ObtenerRegistros">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="ObtenerRegistrosRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ObtenerRegistrosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Registros">
+    <wsdl:port binding="tns:RegistrosPortSoap11" name="RegistrosPortSoap11">
+      <soap:address location="http://localhost:8080/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
